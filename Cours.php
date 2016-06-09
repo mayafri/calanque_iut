@@ -8,37 +8,42 @@ class Cours {
 	private $subject;
 	private $room;
 	private $teacher;
-	private $timeoffset;
+	private $time_offset;
 
-	public function Cours($event, $timeoffset) {
+	/**
+	@param string $event Tableau descriptif du cours dans le fichier iCal
+	@param integer $time_offset Décalage horaire
+	*/
+	
+	public function Cours($event, $time_offset) {
 		$this->start = $event['DTSTART'];
 		$this->end = $event['DTEND'];
 		$this->uid = $event['UID'];
 		$this->room = $event['LOCATION'];
-		$this->timeoffset = $timeoffset;
+		$this->time_offset = $time_offset;
 		
 		$description = explode("\\n", $event['DESCRIPTION']);
 		$this->group = $description[1];
 		$this->teacher = implode(', ', array_slice($description, 2, -1));
 		
-		$summary = explode(" ", $event['SUMMARY']);
+		$summary = explode(" ", stripslashes($event['SUMMARY']));
 		$this->subject = implode(' ', array_slice($summary, 1, -1));
 	}
 	
-	private function dateToArray($date) {
-		return array(substr($date, 0, 4),				// Year
-		substr($date, 4, 2),							// Month
-		substr($date, 6, 2),							// Day
-		substr($date, 9, 2)+$this->timeoffset,			// Hour
-		substr($date, 11, 2));							// Minute
+	private function dateHourToArray($date) {
+		return array(substr($date, 0, 4),				// 0. Year
+		substr($date, 4, 2),							// 1. Month
+		substr($date, 6, 2),							// 2. Day
+		substr($date, 9, 2)+$this->time_offset,			// 3. Hour
+		substr($date, 11, 2));							// 4. Minute
 	}
 	
 	public function getStart() {
-		return $this->dateToArray($this->start);
+		return $this->dateHourToArray($this->start);
 	}
 	
 	public function getEnd() {
-		return $this->dateToArray($this->end);
+		return $this->dateHourToArray($this->end);
 	}
 	
 	public function getUID() {
