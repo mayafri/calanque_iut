@@ -8,9 +8,9 @@ require 'Cours.php';
 class Planning {
 	private $ical;
 	private $time_offset;
-	private $events = array();
-	private $groups = array();
-	private $cours = array();
+	private $events = [];
+	private $groups = [];
+	private $cours = [];
 	
 	/**
 	@param string $path Chemin ou URL du fichier ADE
@@ -24,7 +24,7 @@ class Planning {
 		
 		foreach ($this->events as $event) {
 			$item_cours = new Cours($event, $this->time_offset);
-			array_push($this->cours, $item_cours);
+			$this->cours[] = $item_cours;
 		}
 		
 		usort($this->cours, function($a, $b) {
@@ -41,14 +41,14 @@ class Planning {
 	*/
 	
 	public function getArrayCours($group='', $array_date=null) {
-		$array_cours = array();
+		$array_cours = [];
 		
 		foreach ($this->cours as $i) {
 			if (($group == '')
 			|| ($i->getGroup() == $group)) {
 				if (is_null($array_date)
 				|| (array_chunk($i->getStart(), 3)[0] == $array_date)) {
-					array_push($array_cours, $i);
+					$array_cours[] = $i;
 				}
 			}
 		}
@@ -61,15 +61,13 @@ class Planning {
 	*/
 	
 	public function getArrayGroups() {
-		$array_groups = array();
+		$groups = [];
 		
 		foreach ($this->cours as $i) {
-			array_push($array_groups, $i->getGroup());
+			$groups[$i->getGroup()] = null;
 		}
 		
-		$array_groups = array_unique($array_groups);
-		sort($array_groups);
-		return $array_groups;
+		return array_keys($groups);
 	}
 }
 
