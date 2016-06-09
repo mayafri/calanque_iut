@@ -27,12 +27,10 @@ class Planning {
 			array_push($this->cours, $item_cours);
 		}
 		
-		function cmp($a, $b) {
+		usort($this->cours, function($a, $b) {
 			return $a->getStart()[3]*60+$a->getStart()[4] >
 				   $b->getStart()[3]*60+$b->getStart()[4];
-		}
-		
-		usort($this->cours, "cmp");
+		});
 	}
 	
 	/**
