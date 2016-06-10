@@ -14,7 +14,7 @@ else {
 	$lundi = strtotime("last Monday");
 }
 
-// On parse le timestamp
+// On parse le timestamp pour l'affichage
 
 $Y = date('Y', $lundi);
 $m = date('m', $lundi);
@@ -40,7 +40,8 @@ require 'display.php';
 		<link rel="stylesheet" media="screen" href="screen.css" />
 	</head>
 	<body>
-		<h1>Emploi du temps Calanque</h1>
+		<h1>Emploi du temps Calanque pour l'IUT Lyon 1
+		sous licence libre AGPL</h1>
 		<h2>Semaine du <?php echo $d ?>/<?php echo $m ?>/<?php echo $Y ?></h2>
 
 		<form action="index.php" method="GET">
