@@ -1,7 +1,5 @@
 <?php
 
-// On récupère le lundi en cours
-
 // On s'occupe des variables GET
 
 if (isset($_GET['g']))
@@ -16,9 +14,11 @@ else {
 	$lundi = strtotime("last Monday");
 }
 
-$a = date('Y', $lundi);
+// On parse le timestamp
+
+$Y = date('Y', $lundi);
 $m = date('m', $lundi);
-$j = date('d', $lundi);
+$d = date('d', $lundi);
 
 // On crée l'emploi du temps
 
@@ -40,37 +40,38 @@ require 'display.php';
 		<link rel="stylesheet" media="screen" href="screen.css" />
 	</head>
 	<body>
-		<h1>Emploi du temps</h1>
-		<h2>Semaine du <?php echo $j ?>/<?php echo $m ?>/<?php echo $a ?></h2>
-		<div class="menu">
-			<form action="index.php" method="GET">
-				<select name="g">
-					<?php ComboboxGroups($edt, $g); ?>
-				</select>
-				<button name="t" value="<?php echo $lundi-604800 ?>">-</button>
-				<button name="t" value="<?php echo $lundi+604800 ?>">+</button>
-			</form>
-		</div>
+		<h1>Emploi du temps Calanque</h1>
+		<h2>Semaine du <?php echo $d ?>/<?php echo $m ?>/<?php echo $Y ?></h2>
+
+		<form action="index.php" method="GET">
+			<select name="g">
+				<?php ComboboxGroups($edt, $g); ?>
+			</select>
+			<button name="t" value="<?php echo $lundi-604800 ?>">-</button>
+			<button name="t" value="<?php echo $lundi+604800 ?>">+</button>
+		</form>
 		
-		<div class="lundi">
-			<h3>Lundi <?php echo $j ?></h3>
-			<?php DivCoursOfDay($edt, $g, [$a, $m, $j]); ?>
-		</div>
-		<div class="mardi">
-			<h3>Mardi <?php echo $j+1 ?></h3>
-			<?php DivCoursOfDay($edt, $g, [$a, $m, $j+1]); ?>
-		</div>
-		<div class="mercredi">
-			<h3>Mercredi <?php echo $j+3 ?></h3>
-			<?php DivCoursOfDay($edt, $g, [$a, $m, $j+2]); ?>
-		</div>
-		<div class="jeudi">
-			<h3>Jeudi <?php echo $j+4 ?></h3>
-			<?php DivCoursOfDay($edt, $g, [$a, $m, $j+3]); ?>
-		</div>
-		<div class="vendredi">
-			<h3>Vendredi <?php echo $j+5 ?></h3>
-			<?php DivCoursOfDay($edt, $g, [$a, $m, $j+4]); ?>
+		<div class="semaine">
+			<div class="jour lundi">
+				<h3>Lundi <?php echo date('d', $lundi) ?></h3>
+				<?php DivCoursOfDay($edt, $g, $lundi); ?>
+			</div>
+			<div class="jour mardi">
+				<h3>Mardi <?php echo date('d', $lundi+86400) ?></h3>
+				<?php DivCoursOfDay($edt, $g, $lundi+86400); ?>
+			</div>
+			<div class="jour mercredi">
+				<h3>Mercredi <?php echo date('d', $lundi+86400*2) ?></h3>
+				<?php DivCoursOfDay($edt, $g, $lundi+86400*2); ?>
+			</div>
+			<div class="jour jeudi">
+				<h3>Jeudi <?php echo date('d', $lundi+86400*3) ?></h3>
+				<?php DivCoursOfDay($edt, $g, $lundi+86400*3); ?>
+			</div>
+			<div class="jour vendredi">
+				<h3>Vendredi <?php echo date('d', $lundi+86400*4) ?></h3>
+				<?php DivCoursOfDay($edt, $g, $lundi+86400*4); ?>
+			</div>
 		</div>
 	</body>
 </html>

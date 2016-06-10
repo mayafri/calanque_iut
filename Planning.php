@@ -35,13 +35,18 @@ class Planning {
 	
 	/**
 	@param string $group = '' Filtrage possible par groupe
-	@param array $array_date Filtrage possible par jour
-		via un tableau de chaines (année, mois, jour)
+	@param integer $timestamp Filtrage possible par jour via timestamp
 	@return array Liste d'objets de cours
 	*/
 	
-	public function getArrayCours($group='', $array_date=null) {
+	public function getArrayCours($group='', $timestamp=null) {
 		$array_cours = [];
+		
+		$Y = date('Y', $timestamp);
+		$m = date('m', $timestamp);
+		$d = date('d', $timestamp);
+		
+		$array_date = array($Y, $m, $d);
 		
 		foreach ($this->cours as $i) {
 			if (($group == '')
