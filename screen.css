@@ -1,0 +1,51 @@
+body {
+	font-family: "Cantarell";
+	max-width: 40em;
+	margin: auto;
+	color: #000;
+	background: #DDD;
+	font-size: 1.1em;
+	text-align: center;
+}
+
+h1 {
+	padding: 1em;
+	font-size: 2em;
+	margin: 0;
+	background: #FFF;
+}
+
+.menu {
+	padding: 1em;
+  background: #353CA5;
+  background: linear-gradient(to right, #56009d 0%, #009AB2 100%) no-repeat fixed;
+	color: #FFF;
+}
+
+input[type=number] {
+	width: 5em;
+}
+
+.jour {
+	background: #FFF;
+	padding: 1em;
+}
+
+.cours {
+	margin: 1em;
+	font-size: 1.1em;
+}
+
+h2 {
+	margin: 0;
+	color: #353CA5;
+	font-size: 1.1em;
+}
+
+.cours .desc {
+	padding: 1em;
+}
+
+.cours p {
+	margin: 0;
+}

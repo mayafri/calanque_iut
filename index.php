@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calanque</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" media="screen" href="screen.css" />
+	</head>
+	<body>
+		<h1>Emploi du temps</h1>
 <?php
 
 // On s'occupe des variables GET
@@ -30,7 +39,13 @@ $edt = new Planning('ADECal.ics', 2);
 
 // Interface provisoire immonde
 
-echo '<form action="index.php" method="GET"><select name="g">';
+?>
+
+		<div class="menu">
+			<form action="index.php" method="GET">
+				<select name="g">
+
+<?php
 foreach ($edt->getArrayGroups() as $i) {
 	$attribut = '';
 	if ($g == $i) {
@@ -38,31 +53,35 @@ foreach ($edt->getArrayGroups() as $i) {
 	}
 	echo '<label>Groupe : </label><option '.$attribut.' value="'.$i.'">'.$i.'</option>';
 }
-echo '</select>';
-echo '<label>Jour : </label><input type="number" name="j" value="'.$j.'"/>';
-echo '<label>Mois : </label><input type="number" name="m" value="'.$m.'"/>';
-echo '<label>Année : </label><input type="number" name="a" value="'.$a.'"/>';
-echo "<button>OK</button></form>";
-
-
-// La FAMEUSE boucle d'affichage 
-
-foreach ($edt->getArrayCours($g, [$a, $m, $j]) as $i) {
-	echo 'Groupe : '.$i->getGroup();
-	echo '<br>';
-	echo 'Jour : '.$i->getStart()[2].'-'.$i->getStart()[1];
-	echo '<br>';
-	echo 'Heure début : '.$i->getStart()[3].':'.$i->getStart()[4];
-	echo '<br>';
-	echo 'Heure fin : '.$i->getEnd()[3].':'.$i->getEnd()[4];
-	echo '<br>';
-	echo 'Prof : '.$i->getTeacher();
-	echo '<br>';
-	echo 'Matière : '.$i->getSubject();
-	echo '<br>';
-	echo 'Salle : '.$i->getRoom();
-	echo "<hr>";
-}
 
 ?>
 
+				</select>
+
+
+				<label>Jour : </label><input type="number" name="j" value="<?php echo $j ?>"/>
+				<label>Mois : </label><input type="number" name="m" value="<?php echo $m ?>"/>
+				<label>Année : </label><input type="number" name="a" value="<?php echo $a ?>"/>
+				<button>OK</button>
+			</form>
+		</div>
+		
+		<div class="jour">
+<?php
+// La FAMEUSE boucle d'affichage 
+
+foreach ($edt->getArrayCours($g, [$a, $m, $j]) as $i) {
+	echo '<div class="cours">';
+		echo '<h2>'.$i->getSubject().'</h2>';
+			echo '<div class="desc">';
+				echo '<p>En salle '.$i->getRoom().'</p>';
+				echo '<p>Avec '.$i->getTeacher().'</p>';
+				echo '<p>'.$i->getStart()[3].':'.$i->getStart()[4].' - '.$i->getEnd()[3].':'.$i->getEnd()[4].'</p>';
+			echo '</div>';
+	echo "</div>";
+}
+
+?>
+		</div>
+	</body>
+</html>
