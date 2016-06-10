@@ -48,6 +48,7 @@ require 'display.php';
 			<select name="g">
 				<?php ComboboxGroups($edt, $g); ?>
 			</select>
+			<button name="t" value="<?php echo $lundi ?>">OK</button>
 			<button name="t" value="<?php echo $lundi-604800 ?>">-</button>
 			<button name="t" value="<?php echo $lundi+604800 ?>">+</button>
 		</form>
