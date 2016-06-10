@@ -19,7 +19,7 @@ class Cours {
 		$this->start = $event['DTSTART'];
 		$this->end = $event['DTEND'];
 		$this->uid = $event['UID'];
-		$this->room = $event['LOCATION'];
+		$this->room = stripslashes($event['LOCATION']);
 		$this->time_offset = $time_offset;
 		
 		$description = explode("\\n", $event['DESCRIPTION']);
