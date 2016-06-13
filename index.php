@@ -38,6 +38,7 @@ require 'display.php';
 		<title>Calanque</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" media="screen" href="screen.css" />
+		<link rel="stylesheet" media="screen" href="css/euqnalac.css" />
 	</head>
 	<body>
 		<h1>Emploi du temps Calanque pour l'IUT Lyon 1
