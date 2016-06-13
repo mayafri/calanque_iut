@@ -46,15 +46,13 @@ if (isset($_GET['ccs'])) {
 		<link rel="stylesheet" media="screen" href="css/euqnalac.css" />
 	</head>
 	<body>
-		<header><h1>Semaine du <?php echo $d ?>/<?php echo $m ?>/<?php echo $Y ?></h1></header>
-
 		<form action="index.php" method="GET">
+			<header><button name="t" value="<?php echo $lundi-604800 ?>"><i class="icon-left-open"></i></button><h1>Semaine du <?php echo $d ?>/<?php echo $m ?>/<?php echo $Y ?></h1><button name="t" value="<?php echo $lundi+604800 ?>"><i class="icon-right-open"></i></button></header>
+
 			<select name="g">
 				<?php ComboboxGroups($edt, $g); ?>
 			</select>
 			<button name="t" value="<?php echo $lundi ?>">OK</button>
-			<button name="t" value="<?php echo $lundi-604800 ?>">-</button>
-			<button name="t" value="<?php echo $lundi+604800 ?>">+</button>
 		</form>
 		
 		<div class="semaine">

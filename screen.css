@@ -29,9 +29,21 @@ header {
 }
 
 header>h1 {
+	display: inline-block;
 	font-size: 1em;
 	padding: 0;
 	margin: 0;
+}
+
+header>button {
+	display: inline-block;
+	border: none;
+	background: transparent;
+	color: #FFF;
+	font-size: 1em;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
 }
 
 .semaine {
