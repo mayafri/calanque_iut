@@ -24,8 +24,9 @@ function ComboboxGroups($planning, $group='') {
 function DivCoursOfDay($planning, $group, $timestamp) {
 	
 	foreach ($planning->getArrayCours($group, $timestamp) as $i) {
-		echo '<div class="cours">';
-			echo '<h4>'.$i->getSubject().'</h4>';
+		$hue = crc32($i->getSubject()) % 360;
+		echo '<div class="cours" style="background:hsl('.$hue.', 100%, 90%)">';
+			echo '<h4 style="color:hsl('.$hue.', 100%, 40%)">'.$i->getSubject().'</h4>';
 				echo '<div class="desc">';
 					echo '<p>En salle '.$i->getRoom().'</p>';
 					echo '<p>Avec '.$i->getTeacher().'</p>';

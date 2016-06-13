@@ -21,8 +21,8 @@ h1 {
 h2 {
 	margin-top: 0;
 	padding: 0.5em;
-  background: #353CA5;
-  background: linear-gradient(to right, #56009d 0%, #009AB2 100%) no-repeat fixed;
+	background: #353CA5;
+	background: linear-gradient(to right, #56009d 0%, #009AB2 100%) no-repeat fixed;
 	color: #FFF;
 }
 
@@ -41,6 +41,7 @@ h2 {
 	font-size: 0.8em;
 	height: 9em;
 	background: #FFF;
+	border-radius: .2em;
 }
 
 h3 {
