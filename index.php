@@ -46,9 +46,7 @@ if (isset($_GET['ccs'])) {
 		<link rel="stylesheet" media="screen" href="css/euqnalac.css" />
 	</head>
 	<body>
-		<h1>Emploi du temps Calanque pour l'IUT Lyon 1
-		sous licence libre AGPL</h1>
-		<h2>Semaine du <?php echo $d ?>/<?php echo $m ?>/<?php echo $Y ?></h2>
+		<header><h1>Semaine du <?php echo $d ?>/<?php echo $m ?>/<?php echo $Y ?></h1></header>
 
 		<form action="index.php" method="GET">
 			<select name="g">
@@ -81,5 +79,7 @@ if (isset($_GET['ccs'])) {
 				<?php DivCoursOfDay($edt, $g, $lundi+86400*4, $dparms); ?>
 			</div>
 		</div>
+
+		<footer>Emploi du temps Calanque pour l'IUT Lyon 1 sous licence libre AGPL</footer>
 	</body>
 </html>
