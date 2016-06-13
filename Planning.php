@@ -72,7 +72,9 @@ class Planning {
 			$groups[$i->getGroup()] = null;
 		}
 		
-		return array_keys($groups);
+		$groups = array_keys($groups);
+		sort($groups);
+		return $groups;
 	}
 }
 
