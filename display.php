@@ -1,5 +1,17 @@
 <?php
 
+class DisplayParams {
+	public $colorCrcSalt = '';
+
+	private static $DEFAULT = null;
+	public static function getDefault() {
+		if (is_null(self::$DEFAULT)) {
+			self::$DEFAULT = new self();
+		}
+		return self::$DEFAULT;
+	}
+}
+
 /**
 @param Planning $planning Un objet de type Planning
 @param string $group = '' On peut sélectionner un groupe
@@ -21,10 +33,13 @@ function ComboboxGroups($planning, $group='') {
 @param integer $timestamp Jour via un timestamp
 */
 
-function DivCoursOfDay($planning, $group, $timestamp) {
-	
+function DivCoursOfDay($planning, $group, $timestamp, $dparms = null) {
+	if (is_null($dparms)) {
+		$dparms = DisplayParams::getDefault();
+	}
+
 	foreach ($planning->getArrayCours($group, $timestamp) as $i) {
-		$hue = crc32($i->getSubject()) % 360;
+		$hue = crc32($i->getSubject() . $dparms->colorCrcSalt) % 360;
 		echo '<div class="cours" style="background:hsl('.$hue.', 100%, 90%)">';
 			echo '<h4 style="color:hsl('.$hue.', 100%, 40%)">'.$i->getSubject().'</h4>';
 				echo '<div class="desc">';

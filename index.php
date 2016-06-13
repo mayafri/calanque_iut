@@ -30,6 +30,11 @@ $edt = new Planning('ADECal.ics', 2);
 
 require 'display.php';
 
+$dparms = new DisplayParams();
+if (isset($_GET['ccs'])) {
+	$dparms->colorCrcSalt = $_GET['ccs'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -57,23 +62,23 @@ require 'display.php';
 		<div class="semaine">
 			<div class="jour lundi">
 				<h3>Lundi <?php echo date('d', $lundi) ?></h3>
-				<?php DivCoursOfDay($edt, $g, $lundi); ?>
+				<?php DivCoursOfDay($edt, $g, $lundi, $dparms); ?>
 			</div>
 			<div class="jour mardi">
 				<h3>Mardi <?php echo date('d', $lundi+86400) ?></h3>
-				<?php DivCoursOfDay($edt, $g, $lundi+86400); ?>
+				<?php DivCoursOfDay($edt, $g, $lundi+86400, $dparms); ?>
 			</div>
 			<div class="jour mercredi">
 				<h3>Mercredi <?php echo date('d', $lundi+86400*2) ?></h3>
-				<?php DivCoursOfDay($edt, $g, $lundi+86400*2); ?>
+				<?php DivCoursOfDay($edt, $g, $lundi+86400*2, $dparms); ?>
 			</div>
 			<div class="jour jeudi">
 				<h3>Jeudi <?php echo date('d', $lundi+86400*3) ?></h3>
-				<?php DivCoursOfDay($edt, $g, $lundi+86400*3); ?>
+				<?php DivCoursOfDay($edt, $g, $lundi+86400*3, $dparms); ?>
 			</div>
 			<div class="jour vendredi">
 				<h3>Vendredi <?php echo date('d', $lundi+86400*4) ?></h3>
-				<?php DivCoursOfDay($edt, $g, $lundi+86400*4); ?>
+				<?php DivCoursOfDay($edt, $g, $lundi+86400*4, $dparms); ?>
 			</div>
 		</div>
 	</body>
