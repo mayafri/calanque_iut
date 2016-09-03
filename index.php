@@ -22,13 +22,13 @@ $d = date('d', $lundi);
 
 // On crée l'emploi du temps
 
-require 'Planning.php';
+require_once 'Planning.php';
 
 $edt = new Planning('ADECal.ics', 2);
 
 // On affiche l'interface
 
-require 'display.php';
+require_once 'display.php';
 
 $dparms = new DisplayParams();
 if (isset($_GET['ccs'])) {

@@ -1,5 +1,7 @@
 <?php
 
+require_once 'class.iCalReader.php';
+
 /* TODO Détection nom de groupe/prof par entropie/heuristique
 function calculateEntropy(string $entropyString) {
 	$characterCounts = [];
@@ -27,7 +29,9 @@ function calculateEntropy(string $entropyString) {
 
 class Cours {
 	private $start;
+	private $startTimestamp;
 	private $end;
+	private $endTimestamp;
 	private $uid;
 	private $groups;
 	private $subject;
@@ -44,7 +48,9 @@ class Cours {
 	
 	public function Cours($event, $time_offset) {
 		$this->start = $event['DTSTART'];
+		$this->startTimestamp = ICal::iCalDateToUnixTimestamp($this->start);
 		$this->end = $event['DTEND'];
+		$this->endTimestamp = ICal::iCalDateToUnixTimestamp($this->end);
 		$this->uid = $event['UID'];
 		if (isset($event['LOCATION'])) {
 			$this->room = stripslashes($event['LOCATION']);
@@ -91,8 +97,16 @@ class Cours {
 		return $this->dateHourToArray($this->start);
 	}
 	
+	public function getStartTimestamp() {
+		return $this->startTimestamp;
+	}
+	
 	public function getEnd() {
 		return $this->dateHourToArray($this->end);
+	}
+	
+	public function getEndTimestamp() {
+		return $this->endTimestamp;
 	}
 	
 	public function getUID() {
