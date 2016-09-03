@@ -27,6 +27,14 @@ function ComboboxGroups($planning, $group='') {
 	}
 }
 
+function LengthClass($start, $end) {
+	$d = floor(($end - $start) / (60*30.));
+	if ($d > 0) {
+		return 'm' . (30 * $d);
+	}
+	return '';
+}
+
 /**
 @param Planning $planning Un objet de type Planning
 @param string $group Le nom du groupe sélectionné
@@ -38,19 +46,19 @@ function DivCoursOfDay($planning, $group, $timestamp, $dparms = null) {
 		$dparms = DisplayParams::getDefault();
 	}
 
-	$oldend = 8*60;
+	$oldend = 8*60*60;
 	
 	foreach ($planning->getArrayCours($group, $timestamp) as $i) {
 	
-		$difference = $i->getStart()[3]*60+$i->getStart()[4] - $oldend;
+		$diffLC = LengthClass($oldend, $i->getStart()[3]*3600 + $i->getStart()[4]*60);
 		
-		while($difference/30 > 0) {
-			echo '<div class="sep30"></div>';
-			$difference=$difference-30;
+		if ($diffLC != '') {
+			echo '<div class="sep ' . $diffLC . '"></div>';
 		}
 		
 		$hue = crc32($i->getSubject() . $dparms->colorCrcSalt) % 360;
-		echo '<div class="cours" style="background:hsl('.$hue.', 100%, 90%)">';
+		$lc = LengthClass($i->getStartTimestamp(), $i->getEndTimestamp());
+		echo '<div class="cours ' . $lc . '" style="background:hsl('.$hue.', 100%, 90%)">';
 			echo '<h4 style="color:hsl('.$hue.', 100%, 40%)">'.$i->getSubject().'</h4>';
 				echo '<div class="desc">';
 					echo '<p class="icon-location">En salle '.$i->getRoom().'</p>';
@@ -60,7 +68,7 @@ function DivCoursOfDay($planning, $group, $timestamp, $dparms = null) {
 				echo '</div>';
 		echo "</div>";
 
-		$oldend = $i->getEnd()[3]*60+$i->getStart()[4];
+		$oldend = $i->getEnd()[3]*3600 + $i->getStart()[4]*60;
 	}
 }
 
