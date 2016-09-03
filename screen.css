@@ -6,6 +6,10 @@ body {
 	text-align: center;
 }
 
+a {
+	color: #2A4EA8;
+}
+
 footer {
 	font-weight: bold;
 	font-size: .8em;
@@ -44,6 +48,14 @@ header>button {
 	padding: 0;
 	margin: 0;
 	cursor: pointer;
+}
+
+select, button {
+	font-family: "Cantarell";
+	font-size: 1.2em;
+	border: solid 1pt black;
+	border-radius: .1em;
+	background: #FFF;
 }
 
 .semaine {
