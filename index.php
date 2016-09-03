@@ -78,6 +78,6 @@ if (isset($_GET['ccs'])) {
 			</div>
 		</div>
 
-		<footer>Emploi du temps Calanque pour l'IUT Lyon 1 sous licence libre AGPL</footer>
+		<footer>Emploi du temps Calanque pour l'IUT Lyon 1 sous <a href="https://www.gnu.org/licenses/agpl-3.0.html">licence libre AGPLv3</a>. <a href="https://git.thgros.fr/hyakosm/calendrier">Git</a>.</footer>
 	</body>
 </html>

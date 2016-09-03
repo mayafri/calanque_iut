@@ -8,8 +8,8 @@ body {
 
 footer {
 	font-weight: bold;
-	font-size: 1em;
-	background: #FFF;
+	font-size: .8em;
+	background: rgba(255, 255, 255, .6);
 	position: fixed;
 	bottom: 0;
 	width: 100%;
