@@ -1,7 +1,7 @@
 <?php
 
-require 'class.iCalReader.php';
-require 'Cours.php';
+require_once 'class.iCalReader.php';
+require_once 'Cours.php';
 
 
 
