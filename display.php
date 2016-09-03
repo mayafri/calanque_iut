@@ -44,7 +44,7 @@ function DivCoursOfDay($planning, $group, $timestamp, $dparms = null) {
 			echo '<h4 style="color:hsl('.$hue.', 100%, 40%)">'.$i->getSubject().'</h4>';
 				echo '<div class="desc">';
 					echo '<p class="icon-location">En salle '.$i->getRoom().'</p>';
-					echo '<p class="icon-user">Avec '.$i->getTeacher().'</p>';
+					echo '<p class="icon-user">Avec '.implode(', ', $i->getTeachers()).'</p>';
 					echo '<p class="icon-clock">'.$i->getStart()[3].':'.$i->getStart()[4].' - '.
 					$i->getEnd()[3].':'.$i->getEnd()[4].'</p>';
 				echo '</div>';

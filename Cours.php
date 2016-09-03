@@ -1,14 +1,41 @@
 <?php
 
+/* TODO Détection nom de groupe/prof par entropie/heuristique
+function calculateEntropy(string $entropyString) {
+	$characterCounts = [];
+	$length = strlen($entropyString);
+	for ($i = 0; $i < $length; ++$i) {
+		$c = $entropyString[$i];
+		if(ctype_space($c)) {
+			continue;
+		}
+		$currentCount = 0;
+		if (isset($characterCounts[$c])) {
+			$currentCount = $characterCounts[$c];
+		}
+		$characterCounts[$c] = ++$currentCount;
+	}
+
+	$totalEntropy = 0;
+	foreach ($characterCounts as $c => $count) {
+		$frequency = $count/$length;
+		$totalEntropy += -1*$frequency*log($frequency);
+	}
+	return $totalEntropy;
+}
+*/
+
 class Cours {
 	private $start;
 	private $end;
 	private $uid;
-	private $group;
+	private $groups;
 	private $subject;
 	private $room;
-	private $teacher;
+	private $teachers;
 	private $time_offset;
+
+	const TEACHER_GROUP_ENTROPY_THRESOLD = 1.74;
 
 	/**
 	@param string $event Tableau descriptif du cours dans le fichier iCal
@@ -19,13 +46,35 @@ class Cours {
 		$this->start = $event['DTSTART'];
 		$this->end = $event['DTEND'];
 		$this->uid = $event['UID'];
-		$this->room = stripslashes($event['LOCATION']);
+		if (isset($event['LOCATION'])) {
+			$this->room = stripslashes($event['LOCATION']);
+		}
 		$this->time_offset = $time_offset;
-		
+
 		$description = explode("\\n", $event['DESCRIPTION']);
-		$this->group = $description[1];
-		$this->teacher = implode(', ', array_slice($description, 2, -1));
-		
+		$this->groups = [$description[1]];
+		$this->teachers = [implode(', ', array_slice($description, 2, -1))];
+
+		/* TODO Détection nom de groupe/prof par entropie/heuristique
+		$this->groups = [];
+		$this->teachers = [];
+		foreach ($description as $descElm) {
+			if ($descElm !== "" && strstr($descElm, "xporté") === false) {
+				if (preg_match('/[1-9]/', $descElm) === 1) {
+					// Les personnes n'ont pas de chiffre dans leur nom
+					$this->groups[] = $descElm;
+				} else {
+					$entropy = calculateEntropy($descElm);
+					if ($entropy > self::TEACHER_GROUP_ENTROPY_THRESOLD) {
+						$this->teachers[] = $descElm . $entropy;
+					} else {
+						$this->groups[] = $descElm . $entropy;
+					}
+				}
+			}
+		}
+		*/
+
 		$summary = explode(" ", stripslashes($event['SUMMARY']));
 		$this->subject = implode(' ', array_slice($summary, 1, -1));
 	}
@@ -50,8 +99,8 @@ class Cours {
 		return $this->uid;
 	}
 	
-	public function getGroup() {
-		return $this->group;
+	public function getGroups() {
+		return $this->groups;
 	}
 	
 	public function getSubject() {
@@ -62,8 +111,8 @@ class Cours {
 		return $this->room;
 	}
 	
-	public function getTeacher() {
-		return $this->teacher;
+	public function getTeachers() {
+		return $this->teachers;
 	}
 }
 

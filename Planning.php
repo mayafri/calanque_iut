@@ -50,7 +50,7 @@ class Planning {
 		
 		foreach ($this->cours as $i) {
 			if (($group == '')
-			|| ($i->getGroup() == $group)) {
+			|| in_array($group, $i->getGroups())) {
 				if (is_null($array_date)
 				|| (array_chunk($i->getStart(), 3)[0] == $array_date)) {
 					$array_cours[] = $i;
@@ -69,7 +69,9 @@ class Planning {
 		$groups = [];
 		
 		foreach ($this->cours as $i) {
-			$groups[$i->getGroup()] = null;
+			foreach ($i->getGroups() as $group) {
+				$groups[$group] = null;
+			}
 		}
 		
 		$groups = array_keys($groups);
