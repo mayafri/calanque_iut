@@ -57,9 +57,9 @@ header>button {
 }
 
 .cours {
-	margin: 0.5em;
+	margin-bottom: 0.5em;
 	font-size: 0.8em;
-	height: 9em;
+	height: 9.5em;
 	background: #FFF;
 	border-radius: .2em;
 }
