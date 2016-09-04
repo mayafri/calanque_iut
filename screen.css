@@ -69,7 +69,7 @@ select, nav button {
 	text-shadow: 1pt 1pt 1pt #FFF;
 	cursor: pointer;
 	transition: background .3s;
-	padding: .5em;
+	padding: .2em .5em;
 }
 
 select {
@@ -101,7 +101,7 @@ label::after {
 	position: absolute;
 	top: 0; right: 0;
 	font-size: 1.2em;
-	padding: .5em;
+	padding: .25em .5em;
 	font-family: 'euqnalac';
 	content: "\E805";
 	color: #333;
