@@ -70,7 +70,7 @@ function DivCoursOfDay($planning, $group, $timestamp, $dparms = null) {
 		
 		$hue = crc32($i->getSubject() . $dparms->colorCrcSalt) % 360;
 		$lc = LengthClass($i->getStartTimestamp(), $i->getEndTimestamp());
-		echo '<div class="cours ' . $lc . '" style="background:hsl('.$hue.', 100%, 90%)">';
+		echo '<div class="cours ' . $lc . '" style="background:hsl('.$hue.', 100%, 93%);box-shadow:inset 0 0 1em hsl('.$hue.', 100%, 60%)">';
 			echo '<h4 style="color:hsl('.$hue.', 100%, 40%)">'.$i->getSubject().'</h4>';
 				echo '<div class="desc">';
 					echo '<p class="icon-location">En salle '.$i->getRoom().'</p>';
