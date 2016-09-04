@@ -1,6 +1,6 @@
 body {
 	font-family: "Cantarell";
-	margin: auto;
+	margin: 0 0 1.6em 0;
 	color: #000;
 	background: #FFF;
 	text-align: center;
@@ -114,7 +114,6 @@ label::after {
 
 .jour {
 	background: #FFF;
-	padding: 0 1em;
 	width: 100%;
 	font-size: 0.8em;
 	border-right: 1pt solid #DDD;
@@ -127,6 +126,7 @@ label::after {
 .cours {
 	border-radius: .3em;
 	overflow: hidden;
+	margin: 0 1em;
 }
 
 .m30 {
