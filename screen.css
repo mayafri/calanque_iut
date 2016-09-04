@@ -117,10 +117,16 @@ label::after {
 	padding: 0 1em;
 	width: 100%;
 	font-size: 0.8em;
+	border-right: 1pt solid #DDD;
+}
+
+.jour:last-child {
+	border: none;
 }
 
 .cours {
-	border-radius: .2em;
+	border-radius: .3em;
+	overflow: hidden;
 }
 
 .m30 {
@@ -159,7 +165,7 @@ h4 {
 }
 
 .cours h4 {
-	padding: .5em 0;
+	padding: .9em 0 .3em;
 }
 
 .cours p {
