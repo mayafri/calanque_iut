@@ -1,6 +1,6 @@
 body {
 	font-family: "Cantarell";
-	margin: 0 0 1.6em 0;
+	margin: 0;
 	color: #000;
 	background: #FFF;
 	text-align: center;
@@ -117,6 +117,7 @@ label::after {
 	width: 100%;
 	font-size: 0.8em;
 	border-right: 1pt solid #DDD;
+	padding-bottom: 2em;
 }
 
 .jour:last-child {
