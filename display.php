@@ -46,14 +46,26 @@ function DivCoursOfDay($planning, $group, $timestamp, $dparms = null) {
 		$dparms = DisplayParams::getDefault();
 	}
 
-	$oldend = 8*60*60;
+	$oldend = 8*60;
 	
 	foreach ($planning->getArrayCours($group, $timestamp) as $i) {
 	
-		$diffLC = LengthClass($oldend, $i->getStart()[3]*3600 + $i->getStart()[4]*60);
+		$diff = floor((($i->getStart()[3] * 60 + $i->getStart()[4]) - $oldend) / 30.);
 		
-		if ($diffLC != '') {
-			echo '<div class="sep ' . $diffLC . '"></div>';
+		while ($diff > 0) {
+			if ($diff >= 4) {
+				echo '<div class="sep m120"></div>';
+				$diff = $diff - 4;
+			} elseif ($diff >= 3) {
+				echo '<div class="sep m90"></div>';
+				$diff = $diff - 3;
+			} elseif ($diff >= 2) {
+				echo '<div class="sep m160"></div>';
+				$diff = $diff - 2;
+			} else {
+				echo '<div class="sep m30"></div>';
+				$diff = $diff - 1;
+			}
 		}
 		
 		$hue = crc32($i->getSubject() . $dparms->colorCrcSalt) % 360;
@@ -68,7 +80,7 @@ function DivCoursOfDay($planning, $group, $timestamp, $dparms = null) {
 				echo '</div>';
 		echo "</div>";
 
-		$oldend = $i->getEnd()[3]*3600 + $i->getStart()[4]*60;
+		$oldend = $i->getEnd()[3] * 60 + $i->getEnd()[4];
 	}
 }
 
