@@ -104,7 +104,11 @@ h4 {
 }
 
 .cours .desc {
-	padding: 1em;
+	padding: 0 1em;
+}
+
+.cours h4 {
+	padding: .5em 0;
 }
 
 .cours p {
