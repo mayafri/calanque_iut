@@ -60,7 +60,7 @@ function DivCoursOfDay($planning, $group, $timestamp, $dparms = null) {
 				echo '<div class="sep m90"></div>';
 				$diff = $diff - 3;
 			} elseif ($diff >= 2) {
-				echo '<div class="sep m160"></div>';
+				echo '<div class="sep m60"></div>';
 				$diff = $diff - 2;
 			} else {
 				echo '<div class="sep m30"></div>';
