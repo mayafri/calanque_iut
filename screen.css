@@ -25,7 +25,6 @@ footer {
 
 header {
 	font-size: 1.5em;
-	margin: 0 0 .8em;
 	padding: 0.5em;
 	background: #353CA5;
 	background: linear-gradient(to right, #56009d 0%, #009AB2 100%) no-repeat fixed;
@@ -39,6 +38,11 @@ header>h1 {
 	margin: 0;
 }
 
+nav {
+	background: linear-gradient(to bottom, #EEE, #CCC);
+	border-bottom: 1pt solid #888;
+}
+
 header>button {
 	display: inline-block;
 	border: none;
@@ -50,13 +54,58 @@ header>button {
 	cursor: pointer;
 }
 
-select, button {
+select, nav button {
+	padding: .5em 0;
 	font-family: "Cantarell";
 	font-size: 1.2em;
-	border: solid 1pt black;
-	border-radius: .1em;
-	background: #FFF;
+	border: none;
+	border-left: 1pt solid #888;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+	background: transparent;
 	color: #111;
+	text-shadow: 1pt 1pt 1pt #FFF;
+	cursor: pointer;
+	transition: background .3s;
+	padding: .5em;
+}
+
+select {
+	padding-right: 1.5em;
+}
+
+nav button {
+	border-right: 1pt solid #888;
+}
+
+select:hover, nav button:hover, select:focus, nav button:focus {
+	background: rgba(255, 255, 255, 0.5);
+}
+
+select:active, nav button:active {
+	background: rgba(150, 150, 150, 0.5);
+}
+
+select option {
+	background: #FFF;
+}
+
+label {
+	position: relative;
+	display: inline-block;
+}
+
+label::after {
+	position: absolute;
+	top: 0; right: 0;
+	font-size: 1.2em;
+	padding: .5em;
+	font-family: 'euqnalac';
+	content: "\E805";
+	color: #333;
+	pointer-events: none;
 }
 
 .semaine {
@@ -65,7 +114,7 @@ select, button {
 
 .jour {
 	background: #FFF;
-	padding: 1em;
+	padding: 0 1em;
 	width: 100%;
 	font-size: 0.8em;
 }
@@ -96,6 +145,7 @@ select, button {
 
 h3 {
 	font-size: 1.6em;
+	margin: .5em 0;
 }
 
 h4 {

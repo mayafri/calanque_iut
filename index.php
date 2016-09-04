@@ -42,17 +42,18 @@ if (isset($_GET['ccs'])) {
 	<head>
 		<title>Calanque</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" media="screen" href="screen.css" />
 		<link rel="stylesheet" media="screen" href="css/euqnalac.css" />
+		<link rel="stylesheet" media="screen" href="screen.css" />
 	</head>
 	<body>
 		<form action="index.php" method="GET">
 			<header><button name="t" value="<?php echo $lundi-604800 ?>"><i class="icon-left-open"></i></button><h1>Semaine du <?php echo $d ?>/<?php echo $m ?>/<?php echo $Y ?></h1><button name="t" value="<?php echo $lundi+604800 ?>"><i class="icon-right-open"></i></button></header>
 
-			<select name="g">
-				<?php ComboboxGroups($edt, $g); ?>
-			</select>
-			<button name="t" value="<?php echo $lundi ?>">OK</button>
+			<nav>
+				<label><select name="g">
+					<?php ComboboxGroups($edt, $g); ?>
+				</select></label><button name="t" value="<?php echo $lundi ?>">OK</button>
+			</nav>
 		</form>
 		
 		<div class="semaine">
